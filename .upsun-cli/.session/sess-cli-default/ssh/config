@@ -1,0 +1,10 @@
+# Auto-refresh the SSH certificate.
+Match host "*.platform.sh,*.upsun.com" exec "upsun ssh-cert:load --refresh-only --yes 2>/dev/null"
+
+# Cancel the Match, so that the following configuration will apply regardless of
+# the command's execution.
+Host *.platform.sh *.upsun.com
+
+# Include the certificate and its key.
+CertificateFile /root/.upsun-cli/.session/sess-cli-default/ssh/id_ed25519-cert.pub
+IdentityFile /root/.upsun-cli/.session/sess-cli-default/ssh/id_ed25519
